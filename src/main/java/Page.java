@@ -15,12 +15,6 @@ public class Page {
 
     public static WebDriver driver;
 
-    public static void addAnotherClient() {
-        WebElement addAnotherClient = Page.driver.findElement(By.linkText(Locators.addAnotherClient));
-        addAnotherClient.click();
-    }
-
-
     static void startBrowser(String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
             System.setProperty(Constants.chromeBrowserKey, Constants.chromeBrowserPath);
@@ -69,10 +63,6 @@ public class Page {
         Assert.assertTrue(succLogIn.isDisplayed());
     }
 
-    static void unsuccessfulLogin() {
-
-    }
-
     public static void addNewClient() {
 
 
@@ -101,5 +91,10 @@ public class Page {
         Assert.assertTrue(successRegLocator.getText().contains(Locators.successMessage));
         Assert.assertTrue(successRegLocator.isDisplayed());
 
+    }
+
+    public static void addAnotherClient() {
+        WebElement addAnotherClient = Page.driver.findElement(By.linkText(Locators.addAnotherClient));
+        addAnotherClient.click();
     }
 }

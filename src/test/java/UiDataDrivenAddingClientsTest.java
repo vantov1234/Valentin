@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import utils.Locators;
 
 @RunWith(Parameterized.class)
-public class UiDDLogInTest {
+public class UiDataDrivenAddingClientsTest {
 
    public String firm_name;
    public String firm_town;
@@ -25,7 +25,7 @@ public class UiDDLogInTest {
         return testData;
     }
 
-    public UiDDLogInTest(String firm_name, String firm_addr, String firm_town) {
+    public UiDataDrivenAddingClientsTest(String firm_name, String firm_addr, String firm_town) {
         this.firm_name = firm_name;
         this.firm_addr = firm_addr;
         this.firm_town = firm_town;

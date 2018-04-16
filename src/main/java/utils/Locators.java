@@ -27,6 +27,7 @@ public class Locators {
     public static final String successMessage = "Клиентът е добавен успешно.";
 
     public static final String addAnotherClient = "Нов клиент";
+    public static final String errorLogInMessage = "error";
 
 
 }

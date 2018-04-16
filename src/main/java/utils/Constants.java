@@ -11,4 +11,5 @@ public class Constants {
     public static final String firefoxBrowserPath = "D:/Selenuim_drivers/geckodriver-v0.18.0-win64/geckodriver.exe";
     public static final String explorerBrowserKey = "webdriver.ie.driver";
     public static final String explorerBrowserPath = "D:/Selenuim_drivers/MicrosoftWebDriver.exe";
+
 }
