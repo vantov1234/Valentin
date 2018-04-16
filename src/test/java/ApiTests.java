@@ -1,4 +1,4 @@
-import API.APIDeleteMethod;
+import API.ApiDeleteMethod;
 import API.ApiGetMethod;
 import API.ApiPostMethod;
 import API.ApiPutMethod;
@@ -27,7 +27,7 @@ public class ApiTests {
 
     @Test
     public void deleteTest(){
-        APIDeleteMethod delete = new APIDeleteMethod("https://testvalio.inv.bg/RESTapi/client/20)");
+        ApiDeleteMethod delete = new ApiDeleteMethod("https://testvalio.inv.bg/RESTapi/client/20)");
         delete.buildAndResponse();
     }
 }

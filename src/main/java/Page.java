@@ -15,6 +15,11 @@ public class Page {
 
     public static WebDriver driver;
 
+    public static void addAnotherClient() {
+        WebElement addAnotherClient = Page.driver.findElement(By.linkText(Locators.addAnotherClient));
+        addAnotherClient.click();
+    }
+
 
     static void startBrowser(String browser) {
         if (browser.equalsIgnoreCase("chrome")) {

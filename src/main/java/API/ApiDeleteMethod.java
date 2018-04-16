@@ -9,8 +9,8 @@ import utils.Constants;
 
 import static com.jayway.restassured.RestAssured.given;
 
-public class APIDeleteMethod extends ApiGetMethod {
-    public APIDeleteMethod(String restAPIUrl) {
+public class ApiDeleteMethod extends ApiDefault {
+    public ApiDeleteMethod(String restAPIUrl) {
         super(restAPIUrl);
     }
 

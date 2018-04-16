@@ -3,7 +3,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class Tests {
+public class UiTests {
 
     @Before
     public void setUp() throws Exception {
@@ -17,7 +17,6 @@ public class Tests {
 
     @Test
     public void logIn() {
-
         Page.successfulLogin();
     }
 
@@ -29,7 +28,5 @@ public class Tests {
         Page.createNewClient(ivan);
         Page.submitNewClient();
     }
-
-
 
 }
