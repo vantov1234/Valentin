@@ -45,13 +45,11 @@ public class UiDataDrivenUnSuccessfulLogInTest {
 
         WebElement errorMessage = Page.driver.findElement(By.id(Locators.errorLogInMessage));
         Assert.assertTrue(errorMessage.isDisplayed());
-
     }
 
     @Before
     public void setUp() throws Exception {
         Page.startBrowser("chrome");
-
     }
 
     @After
