@@ -36,6 +36,7 @@ public class Page {
         }
     }
 
+
     private static void configureBrowser(String browser) {
         driver.get(Constants.logInUrl);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.MICROSECONDS);
@@ -48,26 +49,28 @@ public class Page {
 
     static void successfulLogin() {
 
-        WebElement email = Page.driver.findElement(By.id(Locators.getMailLogInLocator));
+        WebElement email = Page.driver.findElement(By.id(Locators.logInEmail));
         email.sendKeys(Constants.logInEmailData);
         Assert.assertTrue(email.isDisplayed());
 
-        WebElement password = Page.driver.findElement(By.id(Locators.getPasswordLogInLocator));
+        WebElement password = Page.driver.findElement(By.id(Locators.logInPassword));
         password.sendKeys(Constants.logInPasswordData);
         Assert.assertTrue(password.isDisplayed());
 
         WebElement submitButton = Page.driver.findElement(By.id(Locators.logInButton));
         submitButton.click();
 
-        WebElement succLogIn = Page.driver.findElement(By.cssSelector(Locators.mailLogInLocator));
+        WebElement succLogIn = Page.driver.findElement(By.cssSelector(Locators.successfulLogInCofirmation));
         Assert.assertTrue(succLogIn.isDisplayed());
     }
 
-    public static void addNewClient() {
+    public static void mainAddNewClient() {
 
+        WebElement mainAddNewClientButton = Page.driver.findElement(By.xpath(Locators.mainAddNewClientButton));
+        mainAddNewClientButton.click();
+    }
 
-        WebElement addNewPhClient = Page.driver.findElement(By.xpath(Locators.addNewClientLocator));
-        addNewPhClient.click();
+    public static void addNewPhisicalClient() {
         WebElement phisicalClientButton = Page.driver.findElement(By.id(Locators.phisicalClientButton));
         phisicalClientButton.click();
     }
@@ -82,19 +85,17 @@ public class Page {
         clientsCity.sendKeys(client.getFirm_town());
     }
 
-
     public static void submitNewClient() {
 
-        WebElement submitButton = Page.driver.findElement(By.name(Locators.submitButton));
-        submitButton.click();
-        WebElement successRegLocator = Page.driver.findElement(By.id(Locators.successRegLocator));
-        Assert.assertTrue(successRegLocator.getText().contains(Locators.successMessage));
-        Assert.assertTrue(successRegLocator.isDisplayed());
-
+        WebElement submitNewClientButton = Page.driver.findElement(By.name(Locators.submitNewClientButton));
+        submitNewClientButton.click();
+        WebElement successRegistrationMessageLocator = Page.driver.findElement(By.xpath(Locators.statusMessage));
+        Assert.assertTrue(successRegistrationMessageLocator.getText().contains(Constants.successfulClientRegistrationMessage));
+        Assert.assertTrue(successRegistrationMessageLocator.isDisplayed());
     }
 
     public static void addAnotherClient() {
-        WebElement addAnotherClient = Page.driver.findElement(By.linkText(Locators.addAnotherClient));
-        addAnotherClient.click();
+        WebElement addAnotherClientButton = Page.driver.findElement(By.linkText(Locators.addAnotherClient));
+        addAnotherClientButton.click();
     }
 }

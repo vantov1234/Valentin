@@ -31,12 +31,12 @@ public class UiDataDrivenUnSuccessfulLogInTest {
     }
 
     @Test
-    public void Test() {
-        WebElement email = Page.driver.findElement(By.id(Locators.getMailLogInLocator));
+    public void Test() throws InterruptedException {
+        WebElement email = Page.driver.findElement(By.id(Locators.logInEmail));
         email.sendKeys(this.mail);
         Assert.assertTrue(email.isDisplayed());
 
-        WebElement password = Page.driver.findElement(By.id(Locators.getPasswordLogInLocator));
+        WebElement password = Page.driver.findElement(By.id(Locators.logInPassword));
         password.sendKeys(this.password);
         Assert.assertTrue(password.isDisplayed());
 
@@ -45,15 +45,16 @@ public class UiDataDrivenUnSuccessfulLogInTest {
 
         WebElement errorMessage = Page.driver.findElement(By.id(Locators.errorLogInMessage));
         Assert.assertTrue(errorMessage.isDisplayed());
+
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         Page.startBrowser("chrome");
     }
 
     @After
-    public void close() throws Exception {
+    public void close(){
         Page.closeBrowser();
     }
 }

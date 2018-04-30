@@ -1,9 +1,8 @@
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.Locators;
@@ -11,9 +10,9 @@ import utils.Locators;
 @RunWith(Parameterized.class)
 public class UiDataDrivenAddingClientsTest {
 
-   public String firm_name;
-   public String firm_town;
-   public String firm_addr;
+    public String firm_name;
+    public String firm_town;
+    public String firm_addr;
 
     @Parameters
     public static String[][] testData() {
@@ -31,8 +30,16 @@ public class UiDataDrivenAddingClientsTest {
         this.firm_town = firm_town;
     }
 
+    @BeforeClass
+    public static void setUp(){
+        Page.startBrowser("chrome");
+        Page.successfulLogin();
+    }
+
     @Test
-    public void ddTest() {
+    public void createClients(){
+        Page.mainAddNewClient();
+        Page.addNewPhisicalClient();
         WebElement clientsName = Page.driver.findElement(By.name(Locators.clientsName));
         clientsName.sendKeys(this.firm_name);
         WebElement clientsAddress = Page.driver.findElement(By.name(Locators.clientsAddress));
@@ -40,18 +47,35 @@ public class UiDataDrivenAddingClientsTest {
         WebElement clientsCity = Page.driver.findElement(By.name(Locators.clientsCity));
         clientsCity.sendKeys(this.firm_town);
         Page.submitNewClient();
-        Page.addAnotherClient();
+        WebElement sm = Page.driver.findElement(By.xpath(Locators.statusMessage));
+        //Assert.assertEquals(Constants.successfulClientRegistrationMessage,sm.getText());
+
     }
 
-    @Before
-    public void setUp() throws Exception {
-        Page.startBrowser("chrome");
-        Page.successfulLogin();
-        Page.addNewClient();
+    @Test
+    public void deleteClients(){
+        WebElement clients = Page.driver.findElement(By.linkText(Locators.clients));
+        clients.click();
+        WebElement client1 = Page.driver.findElement(By.linkText(firm_name));
+        Assert.assertTrue(client1.getText().equals(firm_name));
+        client1.click();
+        WebElement deleteButton = Page.driver.findElement(By.xpath(Locators.deleteClientButton));
+        deleteButton.click();
+        Alert alert = Page.driver.switchTo().alert();
+        alert.accept();
+        WebElement sm = Page.driver.findElement(By.xpath(Locators.statusMessage));
+        //Assert.assertEquals(Constants.successfulClientDeleteMessage,sm.getText());
+
     }
 
     @After
-    public void close() throws Exception {
+    public void startFromTheBegining() {
+        WebElement begin = Page.driver.findElement(By.linkText(Locators.beginButton));
+        begin.click();
+    }
+
+    @AfterClass
+    public static void close() throws Exception {
         Page.closeBrowser();
     }
 }

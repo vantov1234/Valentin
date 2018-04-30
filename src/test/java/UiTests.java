@@ -21,9 +21,9 @@ public class UiTests {
     }
 
     @Test
-    public void addnewPhisicalClient() {
+    public static void addnewPhisicalClient() {
         Page.successfulLogin();
-        Page.addNewClient();
+        Page.mainAddNewClient();
         Client ivan = new Client("Ivan Ivanov", "Sofia", "Sofia", "No", "No");
         Page.createNewClient(ivan);
         Page.submitNewClient();
