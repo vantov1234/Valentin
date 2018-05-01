@@ -5,6 +5,7 @@ import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.Constants;
 import utils.Locators;
 
 @RunWith(Parameterized.class)
@@ -37,7 +38,7 @@ public class UiDataDrivenAddingClientsTest {
     }
 
     @Test
-    public void createClients(){
+    public void createClients() throws InterruptedException {
         Page.mainAddNewClient();
         Page.addNewPhisicalClient();
         WebElement clientsName = Page.driver.findElement(By.name(Locators.clientsName));
@@ -48,8 +49,7 @@ public class UiDataDrivenAddingClientsTest {
         clientsCity.sendKeys(this.firm_town);
         Page.submitNewClient();
         WebElement sm = Page.driver.findElement(By.xpath(Locators.statusMessage));
-        //Assert.assertEquals(Constants.successfulClientRegistrationMessage,sm.getText());
-
+        Assert.assertEquals(Constants.successfulClientRegistrationMessage,sm.getText().trim().replace("\n", ""));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class UiDataDrivenAddingClientsTest {
         Alert alert = Page.driver.switchTo().alert();
         alert.accept();
         WebElement sm = Page.driver.findElement(By.xpath(Locators.statusMessage));
-        //Assert.assertEquals(Constants.successfulClientDeleteMessage,sm.getText());
+        Assert.assertEquals(Constants.successfulClientDeleteMessage,sm.getText().trim().replace("\n", ""));
 
     }
 
